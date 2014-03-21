@@ -1,0 +1,13 @@
+{
+  "name": "instaghent",
+  "version": "1.0.0",
+  "description": "Instaghent Web Server",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-less": "~0.9.0",
+    "grunt-contrib-watch": "~0.5.3"
+  },
+  "author": "Ilias Ismanalijev",
+  "license": "ISC"
+}

@@ -1,0 +1,15 @@
+www
+*.py[co]
+
+pip-log.txt
+
+.Python
+[Bb]in
+[Ii]nclude
+[Ll]ib
+[Ss]cripts
+node_modules
+
+ 
+# MacOSX
+.DS_Store
