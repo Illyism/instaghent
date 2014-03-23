@@ -1,1 +1,2 @@
 pyramid
+psycopg2
