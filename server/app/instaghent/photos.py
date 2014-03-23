@@ -2,6 +2,7 @@ import psycopg2
 import psycopg2.extensions
 psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
 psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
+from datetime import datetime, timedelta
 
 class Query(object):
 	"""docstring for Query"""
@@ -57,14 +58,26 @@ def get_photo_by_id(ID):
 	query.close()
 	return photo
 
-def get_photos(filt="time", order="DESC", offset=0, limit=50):
+def get_photos(filt="time", order="DESC", offset=0, limit=50, timeframe="all"):
 	if (not (filt == "ghents" or filt == "likes" or filt == "comments" or filt == "time")):
 		filt = "time"
 	if (not (order == "DESC" or order == "ASC")):
 		order = "DESC"
 
 	query = Query()
-	query.execute("SELECT * from photos ORDER BY "+ filt +" " + order + " LIMIT %s OFFSET %s;", [limit, offset])
+	if (timeframe == "today" or timeframe == "week" or timeframe == "month" or timeframe == "year"):
+		today = datetime.today()
+		if (timeframe == "today"):
+			timeDifference = today - timedelta(days=1)
+		elif (timeframe == "week"):
+			timeDifference = today - timedelta(days=7)
+		elif (timeframe == "month"):
+			timeDifference = today - timedelta(days=31)
+		elif (timeframe == "year"):
+			timeDifference = today - timedelta(days=365)
+		query.execute("SELECT * from photos WHERE time >= %s ORDER BY "+ filt +" " + order + " LIMIT %s OFFSET %s;", [timeDifference, limit, offset])
+	else:
+		query.execute("SELECT * from photos ORDER BY "+ filt +" " + order + " LIMIT %s OFFSET %s;", [limit, offset])
 
 	photos = query.fetchAllDict()
 	query.close()

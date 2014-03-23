@@ -1,4 +1,12 @@
 <%inherit file="base.mak"/>
+<%block name="title">
+%if "author" in meta:
+	@${meta['author']} | 
+%else:
+	${meta['filt']} | 
+%endif
+Instaghent
+</%block>
 <div class="photos">
 	% for photo in items:
 		<div class="photo" id="${photo['id']}">

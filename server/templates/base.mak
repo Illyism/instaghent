@@ -1,11 +1,10 @@
-<!DOCTYPE html>
 <html lang="{{i18n.lang}}">
 	<head>
 		<link rel="dns-prefetch" href="//fonts.googleapis.com">
 		<link rel="dns-prefetch" href="//code.jquery.com">
 		<link rel="dns-prefetch" href="//1-ps.googleusercontent.com">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>{% block title %}Instaghent{% endblock %}</title>
+		<title><%block name="title">Instaghent</%block></title>
 		<meta name="description" content="{% block description %}{{i18n.metashort}}{% endblock %}" />
 		<meta name="keywords" content="instagram, gent, ghent, instaghent" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
@@ -21,11 +20,11 @@
           <i class="list layout icon"></i> Settings
         </a>
         <a href="/" class="item">Instaghent</a>
-        <%def name="addAuthor(author)">
-        % if "author" in meta:
-          <a href="/by/${meta['author']}" class="active item">By @${meta['author']}</a>
-        % endif
-        </%def>
+<%def name="addAuthor(author)">
+% if "author" in meta:
+<a href="/by/${meta['author']}" class="active item">By @${meta['author']}</a>
+% endif
+</%def>
         ${addAuthor(author)}
       </div>
       <div class="right menu">
@@ -40,26 +39,36 @@
         <div class="item">
           <i class="filter icon"></i> Filter By
           <div class="menu">
-            <%def name="isFilter(x)">
-                % if meta["filt"] == x:
-                active
-                % endif
-            </%def>
-            <a href="/time" class="${isFilter('time')}item">Time</a>
-            <a href="/ghents" class="${isFilter('ghents')}item">Ghents</a>
-            <a href="/likes" class="${isFilter('likes')}item">Likes</a>
-            <a href="/comments" class="${isFilter('comments')}item">Comments</a>
+<%def name="isFilter(x)">
+% if meta["filt"] == x:
+active
+% endif
+</%def>
+<%def name="addTimeFrame()">
+% if meta["timeframe"] != "all":
+/${meta["timeframe"]}
+% endif
+</%def>
+            <a href="/time${addTimeFrame()}" class="${isFilter('time')}item">Time</a>
+            <a href="/ghents${addTimeFrame()}" class="${isFilter('ghents')}item">Ghents</a>
+            <a href="/likes${addTimeFrame()}" class="${isFilter('likes')}item">Likes</a>
+            <a href="/comments${addTimeFrame()}" class="${isFilter('comments')}item">Comments</a>
             ${addAuthor(author)}
           </div>
         </div>
         <div class="item">
           <i class="calendar icon"></i> From
           <div class="menu">
-            <a class="item">Today</a>
-            <a class="item">This Week</a>
-            <a class="item">This Month</a>
-            <a class="item">This Year</a>
-            <a class="active item">All Time</a>
+<%def name="isTime(x)">
+% if meta["timeframe"] == x:
+active
+% endif
+</%def>
+            <a href="/${meta['filt']}/today" class="${isTime('today')}item">Today</a>
+            <a href="/${meta['filt']}/week" class="${isTime('week')}item">This Week</a>
+            <a href="/${meta['filt']}/month" class="${isTime('month')}item">This Month</a>
+            <a href="/${meta['filt']}/year" class="${isTime('year')}item">This Year</a>
+            <a href="/${meta['filt']}" class="${isTime('all')}item">All Time</a>
           </div>
         </div>
       </div>
