@@ -51,6 +51,11 @@ class TestSetGhents(unittest.TestCase):
 		self.ghents = self.query.fetchOne()[0]
 		self.assertEqual(decr_ghents[0], self.ghents)
 
+class TestEncoding(unittest.TestCase):
+	def test_unicode(self):
+		self.query = photos.Query()
+		self.assertEqual(self.query.conn.encoding, "UTF8")
+
 
 if __name__ == '__main__':
 	unittest.main()

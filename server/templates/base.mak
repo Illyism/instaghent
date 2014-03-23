@@ -45,9 +45,11 @@ active
 % endif
 </%def>
 <%def name="addTimeFrame()">
+%if "timeframe" in meta:
 % if meta["timeframe"] != "all":
 /${meta["timeframe"]}
 % endif
+%endif
 </%def>
             <a href="/time${addTimeFrame()}" class="${isFilter('time')}item">Time</a>
             <a href="/ghents${addTimeFrame()}" class="${isFilter('ghents')}item">Ghents</a>
@@ -60,8 +62,10 @@ active
           <i class="calendar icon"></i> From
           <div class="menu">
 <%def name="isTime(x)">
+% if "timeframe" in meta:
 % if meta["timeframe"] == x:
 active
+% endif
 % endif
 </%def>
             <a href="/${meta['filt']}/today" class="${isTime('today')}item">Today</a>

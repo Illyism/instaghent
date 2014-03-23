@@ -8,6 +8,7 @@ class Query(object):
 	"""docstring for Query"""
 	def __init__(self):
 		self.conn = psycopg2.connect("dbname=instaghent user=postgres")
+		self.conn.set_client_encoding("UTF8")
 		self.cur = self.conn.cursor()
 	def execute(self, sql, values=None):
 		if (values is not None):

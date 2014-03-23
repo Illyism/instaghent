@@ -1,4 +1,7 @@
 <%inherit file="base.mak"/>
+<%block name="title">
+About Instaghent | Everyday instagram images of Ghent, Belgium
+</%block>
 <style type="text/css">
   body {
     shape-rendering: crispEdges;
