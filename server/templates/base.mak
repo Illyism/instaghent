@@ -5,7 +5,7 @@
 		<link rel="dns-prefetch" href="//1-ps.googleusercontent.com">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><%block name="title">Instaghent</%block></title>
-		<meta name="description" content="{% block description %}{{i18n.metashort}}{% endblock %}" />
+		<meta name="description" content="A collection of Instagram images taken in Ghent. Add your own with #instaghent. User-voted photographs by Instagram photographers in Ghent, Belgium. See the best shots of Korenmarkt, Graslei, Gravensteen and all the others. - Let's celebrate the beauty of Ghent." />
 		<meta name="keywords" content="instagram, gent, ghent, instaghent" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 		<link type="text/css" rel="stylesheet" href="/css/style.css" />
