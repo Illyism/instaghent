@@ -84,6 +84,9 @@ def get_photos(filt="time", order="DESC", offset=0, limit=50, timeframe="all"):
 	query.close()
 	return photos
 
+def get_more(request):
+	return get_photos(filt=request["filt"], order=request["order"], offset=request["offset"], limit=request["limit"], timeframe=request["timeframe"])
+
 def set_ghents(item):
 	query = Query()
 	if (item["thumbs"] == 0):

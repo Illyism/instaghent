@@ -5,6 +5,7 @@ from pyramid.renderers import render_to_response
 from pyramid.view import view_config
 from app.instaghent import photos
 from app.instaghent import statistics
+import simplejson as json
 
 def index(request):
 	items = photos.get_photos()
@@ -38,6 +39,14 @@ def timeframe(request):
 	items = photos.get_photos(filt=filt, timeframe=time)
 	meta = dict(filt=filt, timeframe=time)
 	return render_to_response('templates:index.mak', {'items': items, "meta": meta}, request=request)
+
+@view_config(renderer='json')
+def more(request):
+	if request.json_body is not None:
+		items = photos.get_more(request.json_body)
+		for x in xrange(0,len(items)):
+			items[x]["time"] = items[x]["time"].strftime('%Y-%m-%d %H:%M:%S')
+		return Response(json.dumps({"items": items}))
 
 def author(request):
 	author = request.matchdict["author"]
@@ -108,6 +117,7 @@ if __name__ == '__main__':
 	config = Configurator()
 	config.add_route('index', '/')
 	config.add_route('thumbs', '/thumbs')
+	config.add_route('more', '/more')
 
 	config.add_route('ghents', '/ghents')
 	config.add_route('time', '/time')
@@ -132,6 +142,7 @@ if __name__ == '__main__':
 
 	config.add_view(index, route_name="index")
 	config.add_view(thumbs, route_name="thumbs")
+	config.add_view(more, route_name="more", renderer="json")
 
 	config.add_view(author, route_name="author")
 	config.add_view(ID, route_name="ID")

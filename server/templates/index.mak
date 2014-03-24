@@ -44,3 +44,45 @@ Instaghent
 		</div>
 	% endfor
 </div>
+<div class="templates-photo transition ui hidden">
+	<div class="photo">
+		<a class="image" href="/by/{author}/{id}"  title="@{author}">
+			<img src="{low}" alt="{author}">
+		</a>
+		<p class="caption">
+			{caption}
+		</p>
+		<div class="meta ui menu">
+			<div class="left menu">
+				<a class="author item" href="/by/{author}">@{author}</a>
+			</div>
+			<div class="right menu">
+				<span class="item time">{time}</span>
+			</div>
+			<div class="sub menu">
+				<div class="left menu">
+					<span class="item likes"><i class="icon like"></i> {likes}</span>
+					<span class="item comments"><i class="icon chat"></i> {comments}</span>
+				</div>
+				<div class="right menu">
+					<a tabindex="0" class="item thumbs up">
+						<i class="icon thumbs up outline"></i>
+					</a>
+					<div class="item ghents">{ghents}</div>
+					<a tabindex="0" class="item thumbs down">
+						<i class="icon thumbs down outline"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<%block name="javascript">
+<script>
+var timeframe = "${meta["timeframe"]}";
+% if "author" in meta:
+var author = "${meta["author"]}";
+%endif
+var filt = "${meta["filt"]}";
+</script>
+</%block>
