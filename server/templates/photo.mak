@@ -8,6 +8,9 @@ ${photo["caption"]} |
 %endif
 Instaghent
 </%block>
+<%block name="head">
+<meta property="og:image" content="${photo['standard']}">
+</%block>
 <div class="contain"><div class="ui stackable grid photo" id="${photo['id']}">
   <div class="twelve column wide">
     <div class="ui segment teal">
