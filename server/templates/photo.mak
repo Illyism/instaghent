@@ -8,7 +8,7 @@ ${photo["caption"]} |
 %endif
 Instaghent
 </%block>
-<div class="contain"><div class="ui grid photo" id="${photo['id']}">
+<div class="contain"><div class="ui stackable grid photo" id="${photo['id']}">
   <div class="twelve column wide">
     <div class="ui segment teal">
       <a class="image" href="/by/${photo['author']}/${photo['id']}" title="@${photo['author']}">

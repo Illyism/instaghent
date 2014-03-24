@@ -49,6 +49,18 @@ h1, h2, h3, h4, h5, h6, .ui.header {
 		width: 25%;
 		float: left;
 		.transition;
+		@media (max-width: 1300px) {
+			width: 33%;
+		}
+		@media (max-width: 960px) {
+			width: 50%;
+		}
+		@media (max-width: 700px) {
+			width: 100%;
+		}
+		@media (max-width: 320px) {
+			width: 100%;
+		}
 		.image {
 			img {
 				.transition;
@@ -85,6 +97,14 @@ h1, h2, h3, h4, h5, h6, .ui.header {
 					}
 				}
 			}
+			@media (max-width: 320px) {
+				text-align: center;
+				margin-top: -170px;
+				.menu {
+					text-align: center;
+					width: 100%;
+				}
+			}
 		}
 		.caption {
 			.transition;
@@ -119,6 +139,11 @@ h1, h2, h3, h4, h5, h6, .ui.header {
 				opacity: 1;
 				position: relative;
 				top: 85px;
+				@media (max-width: 320px) {
+					text-align: center;
+					margin-top: -170px;
+					top: 170px;
+				}
 			}
 		}
 	}
@@ -129,6 +154,22 @@ h1, h2, h3, h4, h5, h6, .ui.header {
   -webkit-box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
   -moz-box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
   box-shadow: inset @horizontal @vertical @blur rgba(0, 0, 0, @alpha);
+}
+
+.top.menu {
+	@media (max-width: 320px) {
+		.home.item {
+			color: #fff;
+			width: 0px;
+			&:before {
+				content:  "\f015";
+				color: rgba(0,0,0,.75);
+				margin: 12px;
+				font-family: "Icons";
+
+			}
+		}
+	}
 }
 
 .navigation.sidebar {
@@ -161,6 +202,7 @@ h1, h2, h3, h4, h5, h6, .ui.header {
 	p.caption {
 		word-wrap: break-word;
 	}
+
 }
 
 // .RdYlGn .q0-11

@@ -19,7 +19,7 @@
         <a class="sidebar-open item">
           <i class="list layout icon"></i> Settings
         </a>
-        <a href="/" class="item">Instaghent</a>
+        <a href="/" class="home item">Instaghent</a>
 <%def name="addAuthor(author)">
 % if "author" in meta:
 <a href="/by/${meta['author']}" class="active item">By @${meta['author']}</a>

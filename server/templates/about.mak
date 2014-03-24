@@ -69,7 +69,7 @@ About Instaghent | Everyday instagram images of Ghent, Belgium
 }
 
 </style>
-<div class="contain"><div class="ui grid">
+<div class="contain"><div class="ui stackable grid">
   <div class="ten column wide">
     <div class="ui segment teal">
       <h1>Instaghent</h1>
