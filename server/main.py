@@ -6,6 +6,7 @@ from pyramid.view import view_config
 from app.instaghent import photos
 from app.instaghent import statistics
 import simplejson as json
+import urllib
 
 def index(request):
 	items = photos.get_photos()
@@ -60,6 +61,11 @@ def ID(request):
 	photo = photos.get_photo_by_id(ID)
 	meta = dict(filt=filt, timeframe="all", author=author, ID=ID)
 	return render_to_response('templates:photo.mak', {'photo': photo, "meta": meta}, request=request)
+
+def get_photo(request):
+	url = request.GET["q"]
+	filehandle = urllib.urlopen(url)
+	return Response(body=filehandle.read(), content_type="image/jpeg")
 
 def thumbs(request):
 	if request.json_body is not None:
@@ -131,7 +137,7 @@ if __name__ == '__main__':
 	
 	config.add_route('ID', '/by/{author}/{ID}')
 	config.add_route('author', '/by/{author}')
-
+	config.add_route('get_photo', '/photo')
 
 	config.add_route('about', '/about')
 	config.add_route('stat_calendar', '/calendar.csv')
@@ -146,6 +152,7 @@ if __name__ == '__main__':
 
 	config.add_view(author, route_name="author")
 	config.add_view(ID, route_name="ID")
+	config.add_view(get_photo, route_name="get_photo")
 
 	config.add_view(filt, route_name="filter")
 	config.add_view(filt, route_name="ghents")

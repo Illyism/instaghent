@@ -1,6 +1,8 @@
 <%inherit file="base.mak"/>
 <%block name="title">
-${photo["caption"]} | 
+% if photo["caption"] is not None:
+	${photo["caption"]} | 
+%endif
 %if "author" in meta:
 	@${meta['author']} | 
 %else:
@@ -14,9 +16,7 @@ Instaghent
 <div class="contain"><div class="ui stackable grid photo" id="${photo['id']}">
   <div class="twelve column wide">
     <div class="ui segment teal">
-      <a class="image" href="/by/${photo['author']}/${photo['id']}" title="@${photo['author']}">
-      	<img src="${photo['standard']}" alt="${photo['author']}" width="100%">
-      </a>
+  		<div class="ui image photo-img fluid" style="background-image: url(/photo?q=${photo['standard']});" data-adaptive-background='1' data-ab-css-background='1' alt="${photo['author']}" width="100%"></div>
     </div>
     %if "location" in photo:
     	%if photo["location"] is not None:
@@ -26,19 +26,8 @@ Instaghent
     		</div>
     	%endif
     %endif
-    <div class="ui segment purple">
+    <div class="ui disqus segment purple">
     	<div id="disqus_thread"></div>
-    	<script type="text/javascript">
-    	    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    	    var disqus_shortname = 'instaghent'; // required: replace example with your forum shortname
-
-    	    /* * * DON'T EDIT BELOW THIS LINE * * */
-    	    (function() {
-    	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-    	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    	    })();
-    	</script>
     </div>
 	</div>
 	<div class="four column wide">
@@ -92,6 +81,7 @@ Instaghent
 
 </div></div>
 <%block name="javascript">
+<script src="/js/bgcol.js"></script>
 %if "location" in photo:
 %if photo["location"] is not None:
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
